@@ -3,6 +3,7 @@ package ru.turik.modules.visuals;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.LivingEntity;
+import net.minecraft.entity.mob.HostileEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.util.math.Vec3d;
 import ru.turik.Turik;
@@ -31,7 +32,7 @@ public class Tracers extends Module {
     }
 
     @Override
-    public void onWorldRender(net.fabricmc.fabric.api.client.rendering.v1.WorldRenderContext ctx) {
+    public void onWorldRender(net.fabricmc.fabric.api.client.rendering.v1.world.WorldRenderContext ctx) {
         MinecraftClient mc = Turik.get().mc();
         if (mc.player == null || mc.world == null) {
             return;
@@ -45,7 +46,7 @@ public class Tracers extends Module {
             if (mc.player.distanceTo(e) > distance.getFloat()) {
                 continue;
             }
-            Vec3d to = toFeet.get() ? e.getPos() : e.getPos().add(0, e.getHeight() / 2.0, 0);
+            Vec3d to = toFeet.get() ? e.getEntityPos() : e.getEntityPos().add(0, e.getHeight() / 2.0, 0);
             Render3D.line(from, to, color.get());
         }
         Render3D.end();
@@ -60,7 +61,7 @@ public class Tracers extends Module {
                 return e instanceof PlayerEntity p && !isFriend(p);
             }
             case "Hostile" -> {
-                return e instanceof LivingEntity l && l.isHostile();
+                return e instanceof HostileEntity;
             }
             case "All" -> {
                 if (e instanceof PlayerEntity p && isFriend(p)) {

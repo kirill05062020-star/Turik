@@ -33,7 +33,7 @@ public class NoRender extends Module {
         if (!isEnabled() || mc.world == null) {
             return;
         }
-        boolean killPrecip = (rain.get() || snow.get()) && (mc.world.isRaining() || mc.world.isSnowing());
+        boolean killPrecip = (rain.get() || snow.get()) && mc.world.isRaining();
         if (killPrecip && mc.world instanceof WorldInvoker invoker) {
             invoker.turik$setRainGradient(0f);
         }

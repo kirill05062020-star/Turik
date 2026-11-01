@@ -1,7 +1,8 @@
 package ru.turik.render;
 
-import net.fabricmc.fabric.api.client.rendering.v1.WorldRenderContext;
+import net.fabricmc.fabric.api.client.rendering.v1.world.WorldRenderContext;
 import net.minecraft.client.MinecraftClient;
+import ru.turik.Turik;
 import net.minecraft.client.util.math.MatrixStack;
 import net.minecraft.util.math.Vec3d;
 import org.joml.Matrix4f;
@@ -48,7 +49,7 @@ public final class Render3D {
     public static void begin(WorldRenderContext context, boolean depthTest, float width) {
         init();
         lineWidth = width;
-        cameraPos = MinecraftClient.getInstance().gameRenderer.getCamera().getPos();
+        cameraPos = MinecraftClient.getInstance().gameRenderer.getCamera().getCameraPos();
         Matrix4f proj = context.projectionMatrix();
         Matrix4f view = context.positionMatrix();
         mvp = new Matrix4f(proj).mul(view);
@@ -152,7 +153,7 @@ public final class Render3D {
      */
     public static float[] project(Vec3d worldPos, WorldRenderContext context) {
         MinecraftClient mc = MinecraftClient.getInstance();
-        Vec3d cam = mc.gameRenderer.getCamera().getPos();
+        Vec3d cam = mc.gameRenderer.getCamera().getCameraPos();
         Matrix4f m = new Matrix4f(context.projectionMatrix()).mul(context.positionMatrix());
         org.joml.Vector4f clip = new org.joml.Vector4f(
                 (float) (worldPos.x - cam.x), (float) (worldPos.y - cam.y),

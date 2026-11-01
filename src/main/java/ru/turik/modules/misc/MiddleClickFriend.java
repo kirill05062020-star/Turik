@@ -33,7 +33,7 @@ public class MiddleClickFriend extends Module {
         if (target == null) {
             return;
         }
-        String name = target.getGameProfile().getName();
+        String name = target.getName().getString();
         boolean added = Turik.get().friends().toggle(name);
         if (notify.get()) {
             Turik.get().notifications().info("Друзья",

@@ -25,7 +25,7 @@ public class ActiveModulesElement extends HudElement {
         float lineH = Render2D.textHeight(size) + 3;
         float w = 0;
         for (var m : enabled) {
-            String text = m.name() + (m.bind() > 0 ? " [" + org.lwjgl.glfw.GLFW.glfwGetKeyName(m.bind()) + "]" : "");
+            String text = m.name() + (m.bind() > 0 ? " [" + org.lwjgl.glfw.GLFW.glfwGetKeyName(m.bind(), 0) + "]" : "");
             w = Math.max(w, Render2D.textWidth(text, size, FontType.MEDIUM));
         }
         width = w + 16;
@@ -33,7 +33,7 @@ public class ActiveModulesElement extends HudElement {
         Render2D.roundedRect(x, y, width, height, 5f, 0xB2101216);
         float yy = y + 4;
         for (var m : enabled) {
-            String text = m.name() + (m.bind() > 0 ? " [" + String.valueOf(org.lwjgl.glfw.GLFW.glfwGetKeyName(m.bind())) + "]" : "");
+            String text = m.name() + (m.bind() > 0 ? " [" + String.valueOf(org.lwjgl.glfw.GLFW.glfwGetKeyName(m.bind(), 0)) + "]" : "");
             Render2D.rect(x + 4, yy + 2, 2, lineH - 6, 0xFF2BD9FF);
             Render2D.text(text, x + 9, yy, size, FontType.MEDIUM, 0xFFE8F6FF);
             yy += lineH;

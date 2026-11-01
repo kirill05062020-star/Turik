@@ -51,7 +51,7 @@ public class XRay extends Module {
         tickCounter = 0;
         found = new ArrayList<>();
         int r = radius.getInt();
-        BlockPos center = BlockPos.ofFloored(mc.player.getPos());
+        BlockPos center = BlockPos.ofFloored(mc.player.getEntityPos());
         for (BlockPos pos : BlockPos.iterate(center.add(-r, -r, -r), center.add(r, r, r))) {
             var state = mc.world.getBlockState(pos);
             if (state.isAir()) {
@@ -77,7 +77,7 @@ public class XRay extends Module {
     }
 
     @Override
-    public void onWorldRender(net.fabricmc.fabric.api.client.rendering.v1.WorldRenderContext ctx) {
+    public void onWorldRender(net.fabricmc.fabric.api.client.rendering.v1.world.WorldRenderContext ctx) {
         if (found.isEmpty()) {
             return;
         }

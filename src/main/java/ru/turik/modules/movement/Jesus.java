@@ -34,14 +34,14 @@ public class Jesus extends Module {
                     mc.player.setVelocity(mc.player.getVelocity().x,
                             Math.min(0.12, surfaceY - mc.player.getY()), mc.player.getVelocity().z);
                 }
-                mc.player.setFallDistance(0);
+                mc.player.fallDistance = 0;
                 mc.player.setOnGround(false);
             }
             case "Hop" -> {
                 if (mc.player.horizontalCollision || mc.player.getVelocity().y <= 0) {
                     mc.player.setVelocity(mc.player.getVelocity().x, 0.34, mc.player.getVelocity().z);
                 }
-                mc.player.setFallDistance(0);
+                mc.player.fallDistance = 0;
             }
             case "Swim" -> {
                 if (keepAboveWaterfall.get()) {

@@ -1,6 +1,7 @@
 package ru.turik.render;
 
 import ru.turik.Turik;
+import ru.turik.font.FontRenderer;
 import ru.turik.font.FontType;
 
 /**
@@ -51,6 +52,18 @@ public final class Render2D {
 
     public static void roundedRect(float x, float y, float w, float h, float radius, int color) {
         e().roundedRect(x, y, w, h, radius, color);
+    }
+
+    public static void roundedOutline(float x, float y, float w, float h, float radius, float thickness, int color) {
+        e().roundedOutline(x, y, w, h, radius, thickness, color);
+    }
+
+    public static void gradientH(float x, float y, float w, float h, int left, int right) {
+        e().gradientH(x, y, w, h, left, right);
+    }
+
+    public static void circle(float cx, float cy, float radius, int color) {
+        e().circle(cx, cy, radius, color);
     }
 
     public static void outline(float x, float y, float w, float h, float radius, float thickness, int color) {

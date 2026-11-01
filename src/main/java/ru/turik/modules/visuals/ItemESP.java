@@ -32,7 +32,7 @@ public class ItemESP extends Module {
     }
 
     @Override
-    public void onWorldRender(net.fabricmc.fabric.api.client.rendering.v1.WorldRenderContext ctx) {
+    public void onWorldRender(net.fabricmc.fabric.api.client.rendering.v1.world.WorldRenderContext ctx) {
         MinecraftClient mc = Turik.get().mc();
         if (mc.player == null || mc.world == null) {
             return;

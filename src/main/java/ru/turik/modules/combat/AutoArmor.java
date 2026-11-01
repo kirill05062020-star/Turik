@@ -47,8 +47,7 @@ public class AutoArmor extends Module {
             int bestContainerSlot = -1;
             for (int i = 0; i < mc.player.playerScreenHandler.slots.size(); i++) {
                 ItemStack stack = mc.player.playerScreenHandler.getSlot(i).getStack();
-                if (!(stack.getItem() instanceof net.minecraft.item.ArmorItem armor)
-                        || armor.getSlotType() != slotType) {
+                if (!InventoryUtils.isArmorForSlot(stack, slotType)) {
                     continue;
                 }
                 double score = InventoryUtils.armorScore(stack);

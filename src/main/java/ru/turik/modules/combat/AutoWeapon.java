@@ -6,6 +6,7 @@ import net.minecraft.item.ItemStack;
 import ru.turik.Turik;
 import ru.turik.module.Category;
 import ru.turik.module.Module;
+import ru.turik.module.setting.BooleanSetting;
 import ru.turik.module.setting.ModeSetting;
 import ru.turik.module.setting.NumberSetting;
 import ru.turik.util.InventoryUtils;
@@ -43,8 +44,9 @@ public class AutoWeapon extends Module {
         for (int slot = 0; slot < 9; slot++) {
             ItemStack stack = mc.player.getInventory().getStack(slot);
             double score = InventoryUtils.weaponScore(stack);
-            if (priority.is("Sword") && !(stack.getItem() instanceof net.minecraft.item.SwordItem)) continue;
-            if (priority.is("Axe") && !(stack.getItem() instanceof net.minecraft.item.AxeItem)) continue;
+            String itemPath = net.minecraft.registry.Registries.ITEM.getId(stack.getItem()).getPath();
+            if (priority.is("Sword") && !itemPath.endsWith("_sword")) continue;
+            if (priority.is("Axe") && !itemPath.endsWith("_axe")) continue;
             if (score > bestScore) {
                 bestScore = score;
                 best = slot;

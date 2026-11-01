@@ -19,7 +19,7 @@ public abstract class LivingEntityMixin {
     private void turik$noSlow(CallbackInfoReturnable<Boolean> cir) {
         if (Turik.get() == null) return;
         LivingEntity self = (LivingEntity) (Object) this;
-        if (!(self.getWorld().isClient)) return;
+        if (!self.getEntityWorld().isClient()) return;
 
         NoSlow noSlow = Turik.get().modules().get(NoSlow.class);
         if (noSlow != null && noSlow.shouldHideUsing(self)) {

@@ -11,7 +11,7 @@ import ru.turik.friend.FriendManager;
 import ru.turik.gui.NotificationManager;
 import ru.turik.hud.HudManager;
 import ru.turik.module.ModuleManager;
-import ru.turik.render.ShaderManager;
+import ru.turik.render.shader.ShaderManager;
 
 /**
  * Central hub of the Turik client. Every subsystem is created, owned and

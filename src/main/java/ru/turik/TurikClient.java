@@ -3,7 +3,7 @@ package ru.turik;
 import net.fabricmc.api.ClientModInitializer;
 import net.fabricmc.fabric.api.client.event.lifecycle.v1.ClientLifecycleEvents;
 import net.fabricmc.fabric.api.client.event.lifecycle.v1.ClientTickEvents;
-import ru.turik.event.events.TickEvent;
+import ru.turik.event.events.Events;
 
 /**
  * Fabric client entrypoint of the Turik client.
@@ -24,7 +24,7 @@ public final class TurikClient implements ClientModInitializer {
 
         ClientTickEvents.END_CLIENT_TICK.register(client -> {
             if (Turik.get() != null) {
-                Turik.get().events().post(new TickEvent(client));
+                Turik.get().events().post(new Events.TickEvent(client));
             }
         });
 

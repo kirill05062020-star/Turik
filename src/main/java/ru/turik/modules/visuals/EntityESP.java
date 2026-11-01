@@ -3,6 +3,7 @@ package ru.turik.modules.visuals;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.LivingEntity;
+import net.minecraft.entity.mob.HostileEntity;
 import ru.turik.Turik;
 import ru.turik.module.Category;
 import ru.turik.module.Module;
@@ -32,7 +33,7 @@ public class EntityESP extends Module {
     }
 
     @Override
-    public void onWorldRender(net.fabricmc.fabric.api.client.rendering.v1.WorldRenderContext ctx) {
+    public void onWorldRender(net.fabricmc.fabric.api.client.rendering.v1.world.WorldRenderContext ctx) {
         MinecraftClient mc = Turik.get().mc();
         if (mc.player == null || mc.world == null) {
             return;
@@ -42,7 +43,7 @@ public class EntityESP extends Module {
             if (!(e instanceof LivingEntity l) || e == mc.player || e.isRemoved() || e.isSpectator()) {
                 continue;
             }
-            boolean hostile = l.isHostile();
+            boolean hostile = l instanceof HostileEntity;
             if (filter.is("Hostile") && !hostile) {
                 continue;
             }

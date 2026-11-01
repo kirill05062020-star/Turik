@@ -2,7 +2,7 @@ package ru.turik.module;
 
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.util.math.MatrixStack;
-import net.fabricmc.fabric.api.client.rendering.v1.WorldRenderContext;
+import net.fabricmc.fabric.api.client.rendering.v1.world.WorldRenderContext;
 import ru.turik.Turik;
 import ru.turik.module.setting.Setting;
 

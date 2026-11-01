@@ -30,7 +30,7 @@ public final class HudManager {
         // Draw on top of the vanilla HUD via the Fabric HUD registry.
         // The DrawContext parameter is intentionally unused: all pixels
         // come from Turik's own GLSL pipeline.
-        net.fabricmc.fabric.api.client.rendering.v1.HudElementRegistry.addLast(
+        net.fabricmc.fabric.api.client.rendering.v1.hud.HudElementRegistry.addLast(
                 Identifier.of("turik", "main_hud"),
                 (DrawContext context, RenderTickCounter tickCounter) -> {
                     MinecraftClient mc = Turik.get().mc();

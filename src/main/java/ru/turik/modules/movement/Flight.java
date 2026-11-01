@@ -72,7 +72,7 @@ public class Flight extends Module {
         else if (down) y = -verticalSpeed.get() * 0.1;
         mc.player.setVelocity(x, y, z);
         mc.player.setOnGround(false);
-        mc.player.setFallDistance(0);
+        mc.player.fallDistance = 0;
         if (noKick.get()) {
             // gentle downward drift keeps pure-hover patterns from stacking
             mc.player.setVelocity(mc.player.getVelocity().add(0, -0.01, 0));

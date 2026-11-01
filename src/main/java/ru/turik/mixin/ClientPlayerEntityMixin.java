@@ -7,7 +7,7 @@ import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 import ru.turik.Turik;
-import ru.turik.modules.movement.NoFall;
+import ru.turik.modules.player.NoFall;
 import ru.turik.modules.player.AutoRespawn;
 
 /**

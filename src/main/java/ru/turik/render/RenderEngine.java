@@ -1,6 +1,6 @@
 package ru.turik.render;
 
-import com.mojang.blaze3d.platform.GlStateManager;
+import org.lwjgl.opengl.GL11;
 import net.minecraft.client.MinecraftClient;
 import ru.turik.Turik;
 import ru.turik.render.shader.Shader;
@@ -134,7 +134,6 @@ public final class RenderEngine {
         glBindTexture(GL_TEXTURE_2D, 0);
         glBindVertexArray(0);
         inFrame = false;
-        mc.getFramebuffer().beginWrite(true);
     }
 
     public float guiScale() {
@@ -289,7 +288,7 @@ public final class RenderEngine {
         putTex(x + w, y + h, u1, v1, r, g, b, a);
         putTex(x, y + h, u0, v1, r, g, b, a);
         glActiveTexture(GL_TEXTURE0);
-        GlStateManager._bindTexture(textureId);
+        GL11.glBindTexture(GL_TEXTURE_2D, textureId);
         flushTex();
     }
 

@@ -1,8 +1,8 @@
 package ru.turik.render;
 
-import com.mojang.blaze3d.platform.GlStateManager;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.gl.Framebuffer;
+import net.minecraft.client.texture.GlTexture;
 import ru.turik.Turik;
 import ru.turik.render.shader.Shader;
 
@@ -85,7 +85,11 @@ public final class BlurRenderer {
         // Pass 1: main framebuffer -> texA (downsampled, horizontal blur)
         glBindFramebuffer(GL_DRAW_FRAMEBUFFER, fboA);
         glViewport(0, 0, width, height);
-        drawFullscreen(blur, mc.getFramebuffer().getColorAttachment(), 1f / width, 0f, width, height);
+        if (!(mc.getFramebuffer().getColorAttachment() instanceof GlTexture colorTexture)) {
+            active = false;
+            return;
+        }
+        drawFullscreen(blur, colorTexture.getGlId(), 1f / width, 0f, width, height);
 
         // Pass 2: texA -> texB (vertical blur)
         glBindFramebuffer(GL_DRAW_FRAMEBUFFER, fboB);
@@ -93,7 +97,6 @@ public final class BlurRenderer {
 
         // Restore game state.
         glBindFramebuffer(GL_DRAW_FRAMEBUFFER, prevFbo);
-        mc.getFramebuffer().beginWrite(true);
         active = true;
     }
 

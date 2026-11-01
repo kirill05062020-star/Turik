@@ -3,6 +3,7 @@ package ru.turik.modules.movement;
 import net.minecraft.client.MinecraftClient;
 import ru.turik.module.Category;
 import ru.turik.module.Module;
+import ru.turik.module.setting.BooleanSetting;
 import ru.turik.module.setting.ModeSetting;
 import ru.turik.module.setting.NumberSetting;
 

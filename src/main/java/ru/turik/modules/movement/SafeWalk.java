@@ -28,8 +28,8 @@ public class SafeWalk extends Module {
         if (mc.player.isSneaking() && !whileSneaking.get()) {
             return;
         }
-        double dx = mc.player.getX() - mc.player.prevX;
-        double dz = mc.player.getZ() - mc.player.prevZ;
+        double dx = mc.player.getX() - mc.player.lastX;
+        double dz = mc.player.getZ() - mc.player.lastZ;
         double speed = Math.sqrt(dx * dx + dz * dz);
         if (speed < 0.05) {
             return;

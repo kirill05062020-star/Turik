@@ -37,7 +37,7 @@ public class Nametags extends Module {
     }
 
     @Override
-    public void onWorldRender(net.fabricmc.fabric.api.client.rendering.v1.WorldRenderContext ctx) {
+    public void onWorldRender(net.fabricmc.fabric.api.client.rendering.v1.world.WorldRenderContext ctx) {
         MinecraftClient mc = Turik.get().mc();
         if (mc.player == null || mc.world == null) {
             return;
@@ -54,7 +54,7 @@ public class Nametags extends Module {
             if (dist > distance.getFloat()) {
                 continue;
             }
-            float[] screen = Render3D.project(p.getPos().add(0, p.getHeight() + 0.45, 0), ctx);
+            float[] screen = Render3D.project(p.getEntityPos().add(0, p.getHeight() + 0.45, 0), ctx);
             if (screen == null) {
                 continue;
             }
@@ -69,7 +69,7 @@ public class Nametags extends Module {
     private void drawTag(MinecraftClient mc, PlayerEntity p, float cx, float y, float fontSize,
                          boolean friend, double dist) {
         float textH = Render2D.textHeight(fontSize);
-        String name = p.getGameProfile().getName();
+        String name = p.getName().getString();
         int nameColor = friend ? 0xFF4CE07B : color.get();
         float w = Render2D.textWidth(name, fontSize, FontType.SEMIBOLD) + 14;
         if (showHealth.get()) {

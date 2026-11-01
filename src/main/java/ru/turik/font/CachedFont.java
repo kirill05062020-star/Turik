@@ -75,7 +75,7 @@ final class CachedFont {
         g.dispose();
 
         int textureId = org.lwjgl.opengl.GL11.glGenTextures();
-        com.mojang.blaze3d.platform.GlStateManager._bindTexture(textureId);
+        org.lwjgl.opengl.GL11.glBindTexture(org.lwjgl.opengl.GL11.GL_TEXTURE_2D, textureId);
         org.lwjgl.opengl.GL11.glTexParameteri(org.lwjgl.opengl.GL11.GL_TEXTURE_2D,
                 org.lwjgl.opengl.GL11.GL_TEXTURE_MIN_FILTER, org.lwjgl.opengl.GL11.GL_LINEAR);
         org.lwjgl.opengl.GL11.glTexParameteri(org.lwjgl.opengl.GL11.GL_TEXTURE_2D,

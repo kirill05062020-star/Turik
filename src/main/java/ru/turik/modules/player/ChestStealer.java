@@ -57,11 +57,12 @@ public class ChestStealer extends Module {
     }
 
     private boolean wanted(ItemStack stack) {
-        if (skipTools.get() && (stack.getItem() instanceof net.minecraft.item.ToolItem
-                || stack.getItem() instanceof net.minecraft.item.ArmorItem)) {
+        String id = ru.turik.util.InventoryUtils.idOf(stack).getPath();
+        boolean tool = id.endsWith("_pickaxe") || id.endsWith("_shovel") || id.endsWith("_hoe")
+                || id.endsWith("_axe") || ru.turik.util.InventoryUtils.isWeapon(stack);
+        if (skipTools.get() && (tool || ru.turik.util.InventoryUtils.armorScore(stack) >= 0)) {
             return false;
         }
-        String id = ru.turik.util.InventoryUtils.idOf(stack).getPath();
         return switch (filter.get()) {
             case "Valuables" -> {
                 for (String w : whitelist) {

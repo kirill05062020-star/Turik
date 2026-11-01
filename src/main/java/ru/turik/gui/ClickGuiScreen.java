@@ -1,6 +1,9 @@
 package ru.turik.gui;
 
 import net.minecraft.client.gui.DrawContext;
+import net.minecraft.client.gui.Click;
+import net.minecraft.client.input.CharInput;
+import net.minecraft.client.input.KeyInput;
 import net.minecraft.client.gui.screen.Screen;
 import net.minecraft.text.Text;
 import org.lwjgl.glfw.GLFW;
@@ -211,7 +214,7 @@ public final class ClickGuiScreen extends Screen {
             Render2D.text("⋯", px + PANEL_W - 16, y + 6, 9.5f, FontType.MEDIUM, 0xFF6B7680);
         }
         if (module.bind() > 0) {
-            String key = GLFW.glfwGetKeyName(module.bind());
+            String key = GLFW.glfwGetKeyName(module.bind(), 0);
             String label = key == null ? "[" + module.bind() + "]" : "[" + key.toUpperCase(Locale.ROOT) + "]";
             Render2D.text(label, px + PANEL_W - 14 - Render2D.textWidth(label, 7.5f, FontType.REGULAR),
                     y + 8, 7.5f, FontType.REGULAR, 0xFF6B7680);
@@ -264,8 +267,8 @@ public final class ClickGuiScreen extends Screen {
         } else if (setting instanceof KeybindSetting k) {
             Render2D.text(setting.name(), x + 4, y + 5, 8.5f, FontType.REGULAR, 0xFFB8C6D2);
             String label = k.isListening() ? "[...]" : k.get() <= 0 ? "[нет]"
-                    : "[" + (GLFW.glfwGetKeyName(k.get()) == null ? "key" + k.get()
-                            : GLFW.glfwGetKeyName(k.get()).toUpperCase(Locale.ROOT)) + "]";
+                    : "[" + (GLFW.glfwGetKeyName(k.get(), 0) == null ? "key" + k.get()
+                            : GLFW.glfwGetKeyName(k.get(), 0).toUpperCase(Locale.ROOT)) + "]";
             float lx = x + PANEL_W - 14 - Render2D.textWidth(label, 8.5f, FontType.MEDIUM);
             Render2D.text(label, lx, y + 5, 8.5f, FontType.MEDIUM,
                     k.isListening() ? 0xFF2BD9FF : 0xFF7DE8FF);
@@ -316,9 +319,10 @@ public final class ClickGuiScreen extends Screen {
         for (int i = 0; i < 4; i++) {
             Render2D.text(labels[i], x + 10, yy - 2, 8.5f, FontType.MEDIUM, 0xFFB8C6D2);
             float v = values[i];
+            int channel = i;
             slider(x + 28, yy + 2, w - 40, v, 0, 255, value -> {
                 int argb = c.get();
-                switch (i) {
+                switch (channel) {
                     case 0 -> argb = (argb & 0xFF00FFFF) | ((int) value << 16);
                     case 1 -> argb = (argb & 0xFFFF00FF) | ((int) value << 8);
                     case 2 -> argb = (argb & 0xFFFFFF00) | (int) value;
@@ -377,7 +381,10 @@ public final class ClickGuiScreen extends Screen {
     // ================= INPUT =================
 
     @Override
-    public boolean mouseClicked(double mouseX, double mouseY, int button) {
+    public boolean mouseClicked(Click click, boolean doubled) {
+        double mouseX = click.x();
+        double mouseY = click.y();
+        int button = click.button();
         mx = (float) mouseX;
         my = (float) mouseY;
 
@@ -561,16 +568,20 @@ public final class ClickGuiScreen extends Screen {
     }
 
     @Override
-    public boolean mouseReleased(double mouseX, double mouseY, int button) {
+    public boolean mouseReleased(Click click) {
+        mx = (float) click.x();
+        my = (float) click.y();
         sliderDragValue = -1;
         Turik.get().hud().editorRelease();
         return true;
     }
 
     @Override
-    public boolean mouseDragged(double mouseX, double mouseY, int button, double dx, double dy) {
+    public boolean mouseDragged(Click click, double dx, double dy) {
+        mx = (float) click.x();
+        my = (float) click.y();
         if (hudEditor) {
-            Turik.get().hud().editorDrag((float) mouseX, (float) mouseY);
+            Turik.get().hud().editorDrag(mx, my);
         }
         return true;
     }
@@ -600,7 +611,8 @@ public final class ClickGuiScreen extends Screen {
     }
 
     @Override
-    public boolean keyPressed(int keyCode, int scanCode, int modifiers) {
+    public boolean keyPressed(KeyInput input) {
+        int keyCode = input.key();
         // 1) keybind capture
         if (listeningBind != null) {
             if (keyCode == GLFW.GLFW_KEY_ESCAPE) {
@@ -648,24 +660,28 @@ public final class ClickGuiScreen extends Screen {
             Turik.get().mc().setScreen(null);
             return true;
         }
-        return super.keyPressed(keyCode, scanCode, modifiers);
+        return super.keyPressed(input);
     }
 
     @Override
-    public boolean charTyped(char chr, int modifiers) {
+    public boolean charTyped(CharInput input) {
+        String chars = input.asString();
+        if (!input.isValidChar() || chars.isEmpty()) {
+            return false;
+        }
         if (editingSetting != null) {
-            editBuffer.append(chr);
+            editBuffer.append(chars);
             return true;
         }
         if (editingProfileDraft) {
-            profileDraft += chr;
+            profileDraft += chars;
             return true;
         }
-        if (searchActive && chr >= 32 && chr != 127) {
-            search.append(chr);
+        if (searchActive) {
+            search.append(chars);
             return true;
         }
-        return super.charTyped(chr, modifiers);
+        return super.charTyped(input);
     }
 
     @Override

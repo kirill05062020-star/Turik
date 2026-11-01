@@ -8,6 +8,8 @@ import net.minecraft.block.entity.HopperBlockEntity;
 import net.minecraft.block.entity.FurnaceBlockEntity;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.world.chunk.ChunkStatus;
+import net.minecraft.world.chunk.WorldChunk;
 import ru.turik.Turik;
 import ru.turik.module.Category;
 import ru.turik.module.Module;
@@ -16,6 +18,7 @@ import ru.turik.module.setting.ColorSetting;
 import ru.turik.module.setting.NumberSetting;
 import ru.turik.render.Render3D;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -37,13 +40,13 @@ public class StorageESP extends Module {
     }
 
     @Override
-    public void onWorldRender(net.fabricmc.fabric.api.client.rendering.v1.WorldRenderContext ctx) {
+    public void onWorldRender(net.fabricmc.fabric.api.client.rendering.v1.world.WorldRenderContext ctx) {
         MinecraftClient mc = Turik.get().mc();
         if (mc.player == null || mc.world == null) {
             return;
         }
         Render3D.begin(ctx, !throughWalls.get(), 1.2f);
-        for (BlockEntity be : List.copyOf(mc.world.blockEntities.values())) {
+        for (BlockEntity be : nearbyBlockEntities(mc)) {
             BlockPos pos = be.getPos();
             if (mc.player.squaredDistanceTo(pos.getX(), pos.getY(), pos.getZ())
                     > distance.get() * distance.get()) {
@@ -68,5 +71,21 @@ public class StorageESP extends Module {
             }
         }
         Render3D.end();
+    }
+
+    private List<BlockEntity> nearbyBlockEntities(MinecraftClient mc) {
+        int chunkRadius = (int) Math.ceil(distance.getFloat() / 16.0);
+        int centerX = mc.player.getBlockX() >> 4;
+        int centerZ = mc.player.getBlockZ() >> 4;
+        List<BlockEntity> result = new ArrayList<>();
+        for (int x = centerX - chunkRadius; x <= centerX + chunkRadius; x++) {
+            for (int z = centerZ - chunkRadius; z <= centerZ + chunkRadius; z++) {
+                var chunk = mc.world.getChunk(x, z, ChunkStatus.FULL, false);
+                if (chunk instanceof WorldChunk worldChunk) {
+                    result.addAll(worldChunk.getBlockEntities().values());
+                }
+            }
+        }
+        return result;
     }
 }

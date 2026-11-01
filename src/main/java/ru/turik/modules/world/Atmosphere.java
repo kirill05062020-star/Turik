@@ -48,7 +48,7 @@ public class Atmosphere extends Module implements SkyOverride {
             // Winter wants visible snow; others clear vanilla precipitation.
             boolean winter = preset.is("Winter");
             boolean autumn = preset.is("Autumn");
-            if (winter && !mc.world.isSnowing()) {
+            if (winter && !mc.world.isRaining()) {
                 invoker.turik$setRainGradient(intensity.getFloat() / 200f);
             } else if (!winter && !autumn && mc.world.isRaining()) {
                 invoker.turik$setRainGradient(0f);
@@ -57,7 +57,7 @@ public class Atmosphere extends Module implements SkyOverride {
     }
 
     @Override
-    public void onWorldRender(net.fabricmc.fabric.api.client.rendering.v1.WorldRenderContext ctx) {
+    public void onWorldRender(net.fabricmc.fabric.api.client.rendering.v1.world.WorldRenderContext ctx) {
         MinecraftClient mc = Turik.get().mc();
         if (mc.player == null || mc.world == null) {
             return;
@@ -75,7 +75,7 @@ public class Atmosphere extends Module implements SkyOverride {
         Random rnd = new Random(seed / 40);
         int n = particleCount.getInt();
         double radius = 28;
-        Vec3d cam = mc.player.getPos();
+        Vec3d cam = mc.player.getEntityPos();
         for (int i = 0; i < n; i++) {
             double t = ((seed % 3600) / 3600.0) + rnd.nextDouble();
             double ang = rnd.nextDouble() * Math.PI * 2;

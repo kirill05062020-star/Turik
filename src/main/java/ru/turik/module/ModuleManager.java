@@ -32,7 +32,7 @@ public final class ModuleManager {
 
     public ModuleManager(Turik turik) {
         turik.events().subscribe(this);
-        net.fabricmc.fabric.api.client.rendering.v1.WorldRenderEvents.AFTER_TRANSLUCENT.register(context -> {
+        net.fabricmc.fabric.api.client.rendering.v1.world.WorldRenderEvents.END_MAIN.register(context -> {
             if (Turik.get() == null || context.world() == null) {
                 return;
             }
@@ -176,7 +176,7 @@ public final class ModuleManager {
         }
 
         // ClickGUI toggle (raw poll — must also work with vanilla screens open).
-        boolean guiKey = InputUtil.isKeyPressed(mc.getWindow().getHandle(), CLICK_GUI_KEY);
+        boolean guiKey = InputUtil.isKeyPressed(mc.getWindow(), CLICK_GUI_KEY);
         if (guiKey && !prevGuiKey) {
             mc.send(() -> {
                 if (!(mc.currentScreen instanceof ClickGuiScreen)) {
@@ -206,7 +206,7 @@ public final class ModuleManager {
             if (bind <= 0 || bind >= prevKeyStates.length) {
                 continue;
             }
-            boolean pressed = InputUtil.isKeyPressed(handle, bind);
+            boolean pressed = InputUtil.isKeyPressed(mc.getWindow(), bind);
             if (pressed && !prevKeyStates[bind]) {
                 module.toggle();
             }

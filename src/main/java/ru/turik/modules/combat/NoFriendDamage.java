@@ -33,7 +33,7 @@ public class NoFriendDamage extends Module {
         boolean friend = Turik.get().friends().isFriend(player);
         if (friend && notifyOnBlock.get()) {
             Turik.get().notifications().warn("NoFriendDamage",
-                    "Атака по другу " + player.getGameProfile().getName() + " отменена");
+                    "Атака по другу " + player.getName().getString() + " отменена");
         }
         return friend;
     }

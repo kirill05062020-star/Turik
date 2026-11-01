@@ -41,7 +41,7 @@ public final class FriendManager {
     }
 
     public synchronized boolean isFriend(net.minecraft.entity.player.PlayerEntity player) {
-        return player != null && isFriend(player.getGameProfile().getName());
+        return player != null && isFriend(player.getName().getString());
     }
 
     public synchronized boolean add(String name) {

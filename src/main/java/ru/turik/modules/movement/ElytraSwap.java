@@ -1,8 +1,8 @@
 package ru.turik.modules.movement;
 
 import net.minecraft.client.MinecraftClient;
-import net.minecraft.item.ElytraItem;
 import net.minecraft.item.ItemStack;
+import net.minecraft.item.Items;
 import net.minecraft.screen.slot.SlotActionType;
 import ru.turik.Turik;
 import ru.turik.module.Category;
@@ -39,7 +39,7 @@ public class ElytraSwap extends Module {
             return;
         }
         ItemStack chest = mc.player.getEquippedStack(net.minecraft.entity.EquipmentSlot.CHEST);
-        boolean wearingElytra = chest.getItem() instanceof ElytraItem;
+        boolean wearingElytra = chest.isOf(Items.ELYTRA);
         boolean wantElytra = direction.is("Elytra");
         if (wantElytra == wearingElytra) {
             return; // already correct
@@ -47,9 +47,8 @@ public class ElytraSwap extends Module {
         int found = -1;
         for (int i = 0; i < mc.player.playerScreenHandler.slots.size(); i++) {
             ItemStack s = mc.player.playerScreenHandler.getSlot(i).getStack();
-            boolean isElytra = s.getItem() instanceof ElytraItem;
-            boolean isPlate = s.getItem() instanceof net.minecraft.item.ArmorItem armor
-                    && armor.getSlotType() == net.minecraft.entity.EquipmentSlot.CHEST;
+            boolean isElytra = s.isOf(Items.ELYTRA);
+            boolean isPlate = net.minecraft.registry.Registries.ITEM.getId(s.getItem()).getPath().endsWith("_chestplate");
             if ((wantElytra && isElytra) || (!wantElytra && isPlate)) {
                 found = i;
                 break;
