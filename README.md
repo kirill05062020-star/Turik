@@ -22,12 +22,12 @@
 
 ## Сборка
 
-Требуется JDK 21+. Проект подключён к Gradle 9.1 через `gradle/wrapper/gradle-wrapper.properties`.
+Требуется JDK 21+. Проект подключён к Gradle 9.8.0 через `gradle/wrapper/gradle-wrapper.properties`.
 
 **Вариант А — через IntelliJ IDEA (рекомендуется):**
 1. Установите [IntelliJ IDEA Community](https://www.jetbrains.com/idea/download/) и JDK 21.
 2. File → Open → выберите папку проекта — IDEA сама распознает `build.gradle`,
-   скачает Gradle 9.1 (по wrapper-конфигу), Loom, Minecraft, yarn и Fabric API.
+   скачает Gradle 9.8.0 (по wrapper-конфигу), Loom, Minecraft, yarn и Fabric API.
 3. Дождитесь окончания Gradle Sync (индексация займет несколько минут при первом открытии).
 4. Если Sync/компиляция нашла ошибки — правьте по подсказкам IDE (список
    вероятных мест — в `docs/LIMITATIONS.md`, п.2).

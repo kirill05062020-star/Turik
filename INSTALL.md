@@ -8,7 +8,7 @@
 
 ### Шаг 2. Открытие проекта
 1. В IntelliJ IDEA: **File → Open**, выберите папку проекта (Turik Client).
-2. IDEA определит `build.gradle`, скачает Gradle 9.1 (из `gradle/wrapper/gradle-wrapper.properties`),
+2. IDEA определит `build.gradle`, скачает Gradle 9.8.0 (из `gradle/wrapper/gradle-wrapper.properties`),
    Loom 1.19.3, Minecraft 1.21.11, yarn-маппинги и Fabric API — первый Sync занимает несколько минут.
 3. Если Sync сообщил об ошибках компиляции — исправьте их по подсказкам IDE;
    вероятные места перечислены в `docs/LIMITATIONS.md` (п.2 — имена методов yarn).
