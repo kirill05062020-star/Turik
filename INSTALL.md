@@ -3,7 +3,7 @@
 ## Компиляция из исходников
 
 ### Шаг 1. Окружение
-- Установите **JDK 21** (например, [Adoptium Temurin](https://adoptium.net/)).
+- Для сборки установите **JDK 25** (например, [Adoptium Temurin](https://adoptium.net/)). Мод будет собран под Java 21, требуемую Minecraft 1.21.11.
 - Установите **IntelliJ IDEA Community** (проще всего) и/или **Gradle** 9.x.
 
 ### Шаг 2. Открытие проекта

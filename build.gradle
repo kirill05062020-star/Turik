@@ -30,8 +30,9 @@ processResources {
 }
 
 java {
+    // Loom 1.19.3 requires JDK 25 to run; release remains Java 21 for Minecraft 1.21.11.
     toolchain {
-        languageVersion = JavaLanguageVersion.of(project.java_release.toInteger())
+        languageVersion = JavaLanguageVersion.of(25)
     }
     sourceCompatibility = JavaVersion.toVersion(project.java_release)
     targetCompatibility = JavaVersion.toVersion(project.java_release)
