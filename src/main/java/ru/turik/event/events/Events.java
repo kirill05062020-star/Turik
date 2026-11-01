@@ -31,8 +31,17 @@ public final class Events {
     }
 
     /** Raised when the client is about to attack an entity; cancellable. */
-    public record AttackEvent(Object target) {
+    public static final class AttackEvent {
+        private final Object target;
         private boolean cancelled;
+
+        public AttackEvent(Object target) {
+            this.target = target;
+        }
+
+        public Object target() {
+            return target;
+        }
 
         public boolean isCancelled() {
             return cancelled;
