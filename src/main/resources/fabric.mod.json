@@ -1,0 +1,26 @@
+{
+  "schemaVersion": 1,
+  "id": "turik",
+  "version": "${version}",
+  "name": "Turik Client",
+  "description": "Turik — a self-contained Fabric client with its own module engine, ClickGUI, HUD, configuration system and GLSL shader engine. Custom Manrope-based font system with full Cyrillic support.",
+  "authors": ["Turik"],
+  "license": "MIT",
+  "icon": "assets/turik/icon.png",
+  "environment": "client",
+  "entrypoints": {
+    "client": ["ru.turik.TurikClient"]
+  },
+  "mixins": [
+    {
+      "config": "turik.mixins.json",
+      "environment": "client"
+    }
+  ],
+  "depends": {
+    "fabricloader": ">=0.20.0",
+    "fabric-api": "*",
+    "minecraft": "~1.21.11",
+    "java": ">=21"
+  }
+}

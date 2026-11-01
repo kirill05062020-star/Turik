@@ -1,0 +1,21 @@
+# Gradle
+.gradle/
+build/
+out/
+classes/
+run/
+remappedSrc/
+
+# IDE
+.idea/
+*.iml
+*.ipr
+*.iws
+.vscode/
+.classpath
+.project
+.settings/
+
+# OS
+.DS_Store
+Thumbs.db

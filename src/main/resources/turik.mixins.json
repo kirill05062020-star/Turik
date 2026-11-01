@@ -1,0 +1,23 @@
+{
+  "required": true,
+  "package": "ru.turik.mixin",
+  "compatibilityLevel": "JAVA_21",
+  "minVersion": "0.8",
+  "client": [
+    "MinecraftClientAccessor",
+    "ClientPlayerEntityMixin",
+    "LivingEntityMixin",
+    "ClientPlayerInteractionManagerMixin",
+    "ClientPlayNetworkHandlerMixin",
+    "ClientWorldMixin",
+    "InGameHudMixin",
+    "EntityVelocityUpdateS2CPacketAccessor",
+    "ExplosionS2CPacketAccessor",
+    "FishHookAccessor",
+    "MouseMixin",
+    "WorldInvoker"
+  ],
+  "injectors": {
+    "defaultRequire": 1
+  }
+}
