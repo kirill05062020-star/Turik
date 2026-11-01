@@ -1,15 +1,23 @@
 # Установка Turik
 
-## Из исходников
+## Компиляция из исходников
 
-1. Установите **JDK 21** или новее.
-2. Склонируйте проект и выполните:
+### Шаг 1. Окружение
+- Установите **JDK 21** (например, [Adoptium Temurin](https://adoptium.net/)).
+- Установите **IntelliJ IDEA Community** (проще всего) и/или **Gradle** 9.x.
 
-   ```bash
-   ./gradlew build
-   ```
+### Шаг 2. Открытие проекта
+1. В IntelliJ IDEA: **File → Open**, выберите папку проекта (Turik Client).
+2. IDEA определит `build.gradle`, скачает Gradle 9.1 (из `gradle/wrapper/gradle-wrapper.properties`),
+   Loom 1.19.3, Minecraft 1.21.11, yarn-маппинги и Fabric API — первый Sync занимает несколько минут.
+3. Если Sync сообщил об ошибках компиляции — исправьте их по подсказкам IDE;
+   вероятные места перечислены в `docs/LIMITATIONS.md` (п.2 — имена методов yarn).
 
-3. Готовый мод появится в `build/libs/Turik-1.21.11-1.0.0.jar`.
+### Шаг 3. Сборка
+- В IDEA: Gradle-панель → **turik → build → build**.
+- Или в терминале из папки проекта: `gradle wrapper && ./gradlew build`.
+
+Готовый мод: `build/libs/Turik-1.21.11-1.0.0.jar`.
 
 ## Установка в Minecraft
 

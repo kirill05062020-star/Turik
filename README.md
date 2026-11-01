@@ -22,13 +22,21 @@
 
 ## Сборка
 
-Требуется JDK 21+.
+Требуется JDK 21+. Проект подключён к Gradle 9.1 через `gradle/wrapper/gradle-wrapper.properties`.
 
-```bash
-./gradlew build
-```
+**Вариант А — через IntelliJ IDEA (рекомендуется):**
+1. Установите [IntelliJ IDEA Community](https://www.jetbrains.com/idea/download/) и JDK 21.
+2. File → Open → выберите папку проекта — IDEA сама распознает `build.gradle`,
+   скачает Gradle 9.1 (по wrapper-конфигу), Loom, Minecraft, yarn и Fabric API.
+3. Дождитесь окончания Gradle Sync (индексация займет несколько минут при первом открытии).
+4. Если Sync/компиляция нашла ошибки — правьте по подсказкам IDE (список
+   вероятных мест — в `docs/LIMITATIONS.md`, п.2).
+5. Gradle-панель → turik → build → **build**. Готовый jar — в `build/libs/`.
 
-Готовый jar появится в `build/libs/Turik-1.21.11-1.0.0.jar`.
+**Вариант Б — через терминал:**
+1. Установите Gradle (`brew install gradle` / [gradle.org/install](https://gradle.org/install/)) и JDK 21.
+2. В папке проекта: `gradle wrapper` (сгенерирует `gradlew` по wrapper-конфигу), затем `./gradlew build`.
+3. Готовый jar появится в `build/libs/Turik-1.21.11-1.0.0.jar`.
 
 Версии (проверены по официальным источникам):
 - Minecraft **1.21.11**
