@@ -1,5 +1,5 @@
 plugins {
-    id 'fabric-loom' version '1.19.3'
+    id 'fabric-loom' version '1.17.21'
     id 'java'
 }
 
@@ -30,9 +30,8 @@ processResources {
 }
 
 java {
-    // Loom 1.19.3 requires JDK 25 to run; release remains Java 21 for Minecraft 1.21.11.
     toolchain {
-        languageVersion = JavaLanguageVersion.of(25)
+        languageVersion = JavaLanguageVersion.of(project.java_release.toInteger())
     }
     sourceCompatibility = JavaVersion.toVersion(project.java_release)
     targetCompatibility = JavaVersion.toVersion(project.java_release)

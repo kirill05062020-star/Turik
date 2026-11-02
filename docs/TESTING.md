@@ -5,7 +5,7 @@
 1. **Версионная совместимость** — проверена по официальным источникам:
    - meta.fabricmc.net: Minecraft 1.21.11 (stable), loader 0.20.1 (stable), yarn 1.21.11+build.6
    - Modrinth API: Fabric API 0.141.6+1.21.11 существует именно для 1.21.11
-   - maven.fabricmc.net: Loom 1.19.3 (последний release)
+   - maven.fabricmc.net: Loom 1.17.21 (выбрана как версия, запускаемая на JDK 21)
 2. **Архитектурные инварианты** — проверено статически на этом устройстве:
    - нет ссылки клиента на чужие GUI/рендеры: весь UI идёт через
      RenderEngine + FontRenderer (поиск по проекту DrawContext/TextRenderer

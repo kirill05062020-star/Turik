@@ -3,13 +3,13 @@
 ## Компиляция из исходников
 
 ### Шаг 1. Окружение
-- Для сборки установите **JDK 25** (например, [Adoptium Temurin](https://adoptium.net/)). Мод будет собран под Java 21, требуемую Minecraft 1.21.11.
+- Для сборки установите **JDK 21** (например, [Adoptium Temurin](https://adoptium.net/)). Мод будет собран под Java 21, требуемую Minecraft 1.21.11.
 - Установите **IntelliJ IDEA Community** (если используете IDE). Встроенный Gradle Wrapper сам загрузит нужный Gradle.
 
 ### Шаг 2. Открытие проекта
 1. В IntelliJ IDEA: **File → Open**, выберите папку проекта (Turik Client).
 2. IDEA определит `build.gradle`, скачает Gradle 9.8.0 (из `gradle/wrapper/gradle-wrapper.properties`),
-   Loom 1.19.3, Minecraft 1.21.11, yarn-маппинги и Fabric API — первый Sync занимает несколько минут.
+   Loom 1.17.21, Minecraft 1.21.11, yarn-маппинги и Fabric API — первый Sync занимает несколько минут.
 3. Если Sync сообщил об ошибках компиляции — исправьте их по подсказкам IDE;
    вероятные места перечислены в `docs/LIMITATIONS.md` (п.2 — имена методов yarn).
 

@@ -22,10 +22,10 @@
 
 ## Сборка
 
-Для сборки требуется JDK 25+ (Loom 1.19.3); мод компилируется для Java 21, нужной Minecraft 1.21.11. Проект подключён к Gradle 9.8.0 через `gradle/wrapper/gradle-wrapper.properties`.
+Для сборки требуется JDK 21+ (Loom 1.17.21); мод компилируется для Java 21, нужной Minecraft 1.21.11. Проект подключён к Gradle 9.8.0 через `gradle/wrapper/gradle-wrapper.properties`.
 
 **Вариант А — через IntelliJ IDEA (рекомендуется):**
-1. Установите [IntelliJ IDEA Community](https://www.jetbrains.com/idea/download/) и JDK 25.
+1. Установите [IntelliJ IDEA Community](https://www.jetbrains.com/idea/download/) и JDK 21.
 2. File → Open → выберите папку проекта — IDEA сама распознает `build.gradle`,
    скачает Gradle 9.8.0 (по wrapper-конфигу), Loom, Minecraft, yarn и Fabric API.
 3. Дождитесь окончания Gradle Sync (индексация займет несколько минут при первом открытии).
@@ -34,7 +34,7 @@
 5. Gradle-панель → turik → build → **build**. Готовый jar — в `build/libs/`.
 
 **Вариант Б — через терминал:**
-1. Для сборки нужен JDK 25; Gradle отдельно устанавливать не требуется.
+1. Для сборки нужен JDK 21; Gradle отдельно устанавливать не требуется.
 2. В папке проекта выполните `sh gradlew build` (Windows: `gradlew.bat build`). Wrapper сам загрузит Gradle 9.8.0.
 3. Готовый jar появится в `build/libs/Turik-1.21.11-1.0.0.jar`.
 
@@ -43,7 +43,7 @@
 - Fabric Loader **0.20.1**
 - Fabric API **0.141.6+1.21.11**
 - Yarn mappings **1.21.11+build.6**
-- Fabric Loom **1.19.3**
+- Fabric Loom **1.17.21**
 
 Подробности установки: `INSTALL.md`.
 Отчёт о тестировании: `docs/TESTING.md`.

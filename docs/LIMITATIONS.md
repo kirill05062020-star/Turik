@@ -2,8 +2,8 @@
 
 1. **Сборка не выполнялась на устройстве разработки.** Проект собран вручную
    по официальным координатам (Minecraft 1.21.11, Fabric API 0.141.6+1.21.11,
-   yarn 1.21.11+build.6, Loom 1.19.3 — проверены через meta.fabricmc.net и
-   Modrinth API). Ошибки компиляции возможны и исправляются одной строкой.
+   yarn 1.21.11+build.6, Loom 1.17.21 (выбрана для сборки на JDK 21) — проверены
+   через meta.fabricmc.net и Modrinth API). Ошибки компиляции возможны.
 2. **Имена методов yarn** в паре мест могли измениться в 1.21.9–1.21.11
    (`player.fishHook`, `getHungerManager`, `useKey`, `Framebuffer.getColorAttachment`,
    `prevX/prevZ`, `updateBlockBreakingProgress`, `renderFireOverlay`). Все такие
