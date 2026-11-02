@@ -34,8 +34,8 @@
 5. Gradle-панель → turik → build → **build**. Готовый jar — в `build/libs/`.
 
 **Вариант Б — через терминал:**
-1. Установите Gradle (`brew install gradle` / [gradle.org/install](https://gradle.org/install/)) и JDK 25.
-2. В папке проекта: `gradle wrapper` (сгенерирует `gradlew` по wrapper-конфигу), затем `./gradlew build`.
+1. Для сборки нужен JDK 25; Gradle отдельно устанавливать не требуется.
+2. В папке проекта выполните `sh gradlew build` (Windows: `gradlew.bat build`). Wrapper сам загрузит Gradle 9.8.0.
 3. Готовый jar появится в `build/libs/Turik-1.21.11-1.0.0.jar`.
 
 Версии (проверены по официальным источникам):

@@ -4,7 +4,7 @@
 
 ### Шаг 1. Окружение
 - Для сборки установите **JDK 25** (например, [Adoptium Temurin](https://adoptium.net/)). Мод будет собран под Java 21, требуемую Minecraft 1.21.11.
-- Установите **IntelliJ IDEA Community** (проще всего) и/или **Gradle** 9.x.
+- Установите **IntelliJ IDEA Community** (если используете IDE). Встроенный Gradle Wrapper сам загрузит нужный Gradle.
 
 ### Шаг 2. Открытие проекта
 1. В IntelliJ IDEA: **File → Open**, выберите папку проекта (Turik Client).
@@ -15,7 +15,7 @@
 
 ### Шаг 3. Сборка
 - В IDEA: Gradle-панель → **turik → build → build**.
-- Или в терминале из папки проекта: `gradle wrapper && ./gradlew build`.
+- Или в терминале из папки проекта: `sh gradlew build` (Windows: `gradlew.bat build`).
 
 Готовый мод: `build/libs/Turik-1.21.11-1.0.0.jar`.
 
